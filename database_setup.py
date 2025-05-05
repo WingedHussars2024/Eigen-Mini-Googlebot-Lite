@@ -24,6 +24,18 @@ def setup_database():
         )
     ''')
 
+        # Nieuwe tabel voor extra info per item
+    c.execute('''
+        CREATE TABLE IF NOT EXISTS visit_item_info (
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            visit_item_id INTEGER,
+            key TEXT,
+            value TEXT,
+            FOREIGN KEY(visit_item_id) REFERENCES visit_items(id)
+        )
+    ''')
+
+
     conn.commit()
     conn.close()
 
